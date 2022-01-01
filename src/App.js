@@ -3,33 +3,7 @@ import { useState } from 'react';
 // import { addCountdown } from 'store/actions/countdowns';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-
-const hours = [
-  '12:00',
-  '12:30',
-  '1:00',
-  '1:30',
-  '2:00',
-  '2:30',
-  '3:00',
-  '3:30',
-  '4:00',
-  '4:30',
-  '5:00',
-  '5:30',
-  '6:00',
-  '6:30',
-  '7:00',
-  '7:30',
-  '8:00',
-  '8:30',
-  '9:00',
-  '9:30',
-  '10:00',
-  '10:30',
-  '11:00',
-  '11:30',
-];
+import { hours } from './utils';
 
 const AppContainer = styled.div`
   padding: 2rem;
@@ -56,19 +30,34 @@ function App({ countdowns }) {
       <Formik
         initialValues={{ date: today, time: '12:00', AMPM: 'AM' }}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values);
+          // console.log(values);
+          // countdown('01-05-2022 19:00');
 
-          const newCountdowns = localCountdowns.push(values);
+          let time;
+          const [year, month, day] = values.date.split('-');
+          if (values.AMPM === 'PM') {
+            const hour = Number(values.time.split(':')[0]) + 12;
+            time = hour + ':' + values.time.split(':')[1];
+          } else {
+            time = values.time;
+          }
+
+          const countdownDate = `${month}-${day}-${year} ${time}`;
+
+          console.log(countdownDate);
+
+          const newCountdowns = localCountdowns.push(countdownDate);
           setLocalCountdowns([...newCountdowns]);
-          console.log(newCountdowns);
+
+          // console.log(newCountdowns);
 
           setSubmitting(false);
         }}
       >
         {({ values }) => {
-          console.log(values.date);
           return (
             <Form id="calenders">
+              <label htmlFor="date">date</label>
               <input
                 type="date"
                 id="date"
@@ -108,7 +97,7 @@ function App({ countdowns }) {
       {localCountdowns.length ? (
         <>
           {localCountdowns.map((countdown) => {
-            return <p>{countdown.date}</p>;
+            return <p>{countdown}</p>;
           })}
         </>
       ) : null}
