@@ -1,20 +1,8 @@
 import { Field, Form, Formik } from 'formik';
+import { useState } from 'react';
+// import { addCountdown } from 'store/actions/countdowns';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
-
-const months = [
-  'january',
-  'february',
-  'march',
-  'april',
-  'may',
-  'june',
-  'july',
-  'august',
-  'september',
-  'october',
-  'november',
-  'december',
-];
 
 const hours = [
   '12:00',
@@ -51,7 +39,8 @@ const H1 = styled.h1`
   text-align: center;
 `;
 
-function App() {
+function App({ countdowns }) {
+  const [localCountdowns, setLocalCountdowns] = useState([]);
   const now = new Date();
 
   const year = now.getFullYear();
@@ -65,9 +54,14 @@ function App() {
       <H1>⋆✩ 🎀 𝒸♡𝓊𝓃𝓉𝒹♡𝓌𝓃 𝑔𝒶𝓇𝒹𝑒𝓃 🎀 ✩⋆</H1>
 
       <Formik
-        initialValues={{ date: today, time: '', AMPM: '' }}
+        initialValues={{ date: today, time: '12:00', AMPM: 'AM' }}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
+
+          const newCountdowns = localCountdowns.push(values);
+          setLocalCountdowns([...newCountdowns]);
+          console.log(newCountdowns);
+
           setSubmitting(false);
         }}
       >
@@ -89,7 +83,6 @@ function App() {
               </label>
 
               <Field as="select" name="time" id="time">
-                <option value="">time</option>
                 {hours.map((hour, key) => {
                   return (
                     <option value={hour} key={hour}>
@@ -111,8 +104,24 @@ function App() {
           );
         }}
       </Formik>
+
+      {localCountdowns.length ? (
+        <>
+          {localCountdowns.map((countdown) => {
+            return <p>{countdown.date}</p>;
+          })}
+        </>
+      ) : null}
+
+      {countdowns.length ? <p>there are countdowns</p> : null}
     </AppContainer>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    countdowns: state.countdowns,
+  };
+};
+
+export default connect(mapStateToProps)(App);
