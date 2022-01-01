@@ -34,7 +34,11 @@ const DateForm = ({ today, setLocalCountdowns, localCountdowns }) => {
 
           setSubmitting(false);
         }
-        toast('please select a date / time combination that is in the future');
+        if (getDifference(countdownDate) < 0) {
+          toast(
+            'please select a date / time combination that is in the future'
+          );
+        }
       }}
     >
       {({ values, setFieldTouched, setFieldValue, handleReset }) => {

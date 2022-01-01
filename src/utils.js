@@ -1,3 +1,16 @@
+/**
+ * Returns string - a number of greater than four digits will have appropriate comma separation
+ * @param {number} num
+ */
+export function numberWithCommas(num) {
+  return typeof num === 'number'
+    ? num
+        .toFixed(2)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    : undefined;
+}
+
 export const hours = [
   '12:00',
   '12:30',
@@ -41,10 +54,12 @@ export const remaining = (secs) => {
   const hoursRemaining = Math.floor(hours % 24);
   const daysRemaining = Math.floor(days);
 
-  return `
-    days remaining: ${daysRemaining} days ${hoursRemaining} hours ${minutesRemaining} minutes ${secondsRemaining} seconds
-    hours remaining: ${Math.floor(hours)}
-  `;
+  return [
+    `${daysRemaining} days ${hoursRemaining} hours ${minutesRemaining} minutes ${secondsRemaining} seconds`,
+    `total hours remaining: ${numberWithCommas(hours)}`,
+    `total minutes remaining: ${numberWithCommas(minutes)}`,
+    `total seconds remaining: ${numberWithCommas(secs)}`,
+  ];
 };
 
 export const getDifference = (str) => {

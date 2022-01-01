@@ -3,24 +3,26 @@ const initState = {
   countdowns: [],
 };
 
-const aboutPage = (state = initState, action) => {
+const countdownsReducer = (state = initState, action) => {
   switch (action.type) {
     case 'ADD_COUNTDOWN':
+      console.log(action.payload);
+
       const cds = state.countdowns;
-      cds.push(action.payload``);
+
+      cds.push(action.payload);
+
+      console.log(cds);
       return {
-        ...state,
         countdowns: cds,
       };
 
     case 'REMOVE_COUNTDOWN':
-      // remove the character from the selected characters array
       const cdsRemove = state.countdowns;
 
       _.pull(cdsRemove, action.payload);
       return {
-        ...state,
-        coundowns: cdsRemove,
+        countdowns: cdsRemove,
       };
 
     default:
@@ -28,4 +30,4 @@ const aboutPage = (state = initState, action) => {
   }
 };
 
-export default aboutPage;
+export default countdownsReducer;

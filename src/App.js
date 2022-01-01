@@ -29,7 +29,7 @@ function App({ countdowns }) {
 
   const today = `${year}-${month}-${day}`;
 
-  console.log(localCountdowns);
+  console.log(countdowns);
 
   return (
     <AppContainer>
@@ -55,7 +55,7 @@ function App({ countdowns }) {
           style: {
             color: '#000',
             background: '#fff',
-            fontSize: '1.6rem',
+            fontSize: '1rem',
             border: '1px solid black',
             borderRadius: '0',
           },
