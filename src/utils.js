@@ -25,20 +25,11 @@ export const hours = [
   '11:30',
 ];
 
-const months = {
-  0: 'January',
-  1: 'February',
-  2: 'March',
-  3: 'April',
-  4: 'May',
-  5: 'June',
-  6: 'July',
-  7: 'August',
-  8: 'September',
-  9: 'October',
-  10: 'November',
-  11: 'December',
-};
+export function buildDay(day) {
+  if (day < 10) {
+    return `0${day}`;
+  }
+}
 
 export const remaining = (secs) => {
   const minutes = secs / 60;
@@ -56,7 +47,7 @@ export const remaining = (secs) => {
   `;
 };
 
-export const countdown = (str) => {
+export const getDifference = (str) => {
   let date, time, month, day, year;
   const now = Date.now();
   [date, time] = str.split(' ');
@@ -66,6 +57,13 @@ export const countdown = (str) => {
 
   const difference = target - now;
 
+  return difference;
+};
+
+export const countdown = (str) => {
+  const difference = getDifference(str);
+
   const seconds = difference / 1000;
+
   return remaining(seconds);
 };

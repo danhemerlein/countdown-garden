@@ -1,10 +1,10 @@
-import { Field, Form, Formik } from 'formik';
+import DateForm from 'DateForm';
 import { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { buildDay } from 'utils';
 import Countdown from './Countdown';
-import { hours } from './utils';
-store/actions/countdowns';
 
 const AppContainer = styled.div`
   padding: 2rem;
@@ -18,93 +18,27 @@ function App({ countdowns }) {
   const [localCountdowns, setLocalCountdowns] = useState([]);
   const now = new Date();
 
-  const year = now.getFullYear();
-  const month = now.getMonth();
-  const day = now.getDate();
+  let year = now.getFullYear();
+  let month = now.getMonth();
+  let day = now.getDate();
 
-  const today = `${year}-${month + 1}-${day}`;
+  day = buildDay(day);
+
+  month = month + 1;
+  month = buildDay(month);
+
+  const today = `${year}-${month}-${day}`;
+
+  console.log(localCountdowns);
 
   return (
     <AppContainer>
       <H1>⋆✩ 🎀 𝒸♡𝓊𝓃𝓉𝒹♡𝓌𝓃 𝑔𝒶𝓇𝒹𝑒𝓃 🎀 ✩⋆</H1>
-
-      <Formik
-        initialValues={{ date: today, time: '12:00', AMPM: 'AM' }}
-        onSubmit={(values, { setSubmitting }) => {
-          // console.log(values);
-          // countdown('01-05-2022 19:00');
-
-          let time;
-          const [year, month, day] = values.date.split('-');
-          if (values.AMPM === 'PM') {
-            const hour = Number(values.time.split(':')[0]) + 12;
-            time = hour + ':' + values.time.split(':')[1];
-          } else {
-            time = values.time;
-          }
-
-          const countdownDate = `${month}-${day}-${year} ${time}`;
-
-          console.log(countdownDate);
-
-          const newCountdowns = localCountdowns.push(countdownDate);
-          setLocalCountdowns([...newCountdowns]);
-
-          // console.log(newCountdowns);
-
-          setSubmitting(false);
-        }}
-      >
-        {({ values, setFieldTouched, setFieldValue }) => {
-          const setDateValue = (date) => {
-            setFieldTouched('date', true, false);
-
-            return setFieldValue('date', date);
-          };
-          const dateChangeHandler = (e) => {
-            e.preventDefault();
-            setDateValue(e.target.value);
-          };
-          return (
-            <Form id="calenders">
-              <label htmlFor="date">date</label>
-
-              <input
-                type="date"
-                id="date"
-                name="date"
-                defaultValue={values.date}
-                min={today}
-                max="2122-12-31"
-                onChange={dateChangeHandler}
-              ></input>
-
-              <label as="label" htmlFor="time">
-                time:
-              </label>
-
-              <Field as="select" name="time" id="time">
-                {hours.map((hour, key) => {
-                  return (
-                    <option value={hour} key={hour}>
-                      {hour}
-                    </option>
-                  );
-                })}
-              </Field>
-
-              <Field as="select" name="AMPM" id="AMPM">
-                <option value="AM">AM</option>
-                <option value="PM">PM</option>
-              </Field>
-
-              <div>
-                <button type="submit">create countdown</button>
-              </div>
-            </Form>
-          );
-        }}
-      </Formik>
+      <DateForm
+        today={today}
+        setLocalCountdowns={setLocalCountdowns}
+        localCountdowns={localCountdowns}
+      />
 
       {localCountdowns.length ? (
         <>
@@ -115,6 +49,18 @@ function App({ countdowns }) {
       ) : null}
 
       {countdowns.length ? <p>there are countdowns</p> : null}
+
+      <Toaster
+        toastOptions={{
+          style: {
+            color: '#000',
+            background: '#fff',
+            fontSize: '1.6rem',
+            border: '1px solid black',
+            borderRadius: '0',
+          },
+        }}
+      />
     </AppContainer>
   );
 }
