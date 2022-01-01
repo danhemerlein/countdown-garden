@@ -3,6 +3,7 @@ import { useState } from 'react';
 // import { addCountdown } from 'store/actions/countdowns';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import Countdown from './Countdown';
 import { hours } from './utils';
 
 const AppContainer = styled.div`
@@ -54,10 +55,20 @@ function App({ countdowns }) {
           setSubmitting(false);
         }}
       >
-        {({ values }) => {
+        {({ values, setFieldTouched, setFieldValue }) => {
+          const setDateValue = (date) => {
+            setFieldTouched('date', true, false);
+
+            return setFieldValue('date', date);
+          };
+          const dateChangeHandler = (e) => {
+            e.preventDefault();
+            setDateValue(e.target.value);
+          };
           return (
             <Form id="calenders">
               <label htmlFor="date">date</label>
+
               <input
                 type="date"
                 id="date"
@@ -65,6 +76,7 @@ function App({ countdowns }) {
                 defaultValue={values.date}
                 min={today}
                 max="2122-12-31"
+                onChange={dateChangeHandler}
               ></input>
 
               <label as="label" htmlFor="time">
@@ -97,7 +109,7 @@ function App({ countdowns }) {
       {localCountdowns.length ? (
         <>
           {localCountdowns.map((countdown) => {
-            return <p>{countdown}</p>;
+            return <Countdown date={countdown} />;
           })}
         </>
       ) : null}

@@ -40,7 +40,7 @@ const months = {
   11: 'December',
 };
 
-function remaining(secs) {
+export const remaining = (secs) => {
   const minutes = secs / 60;
   const hours = minutes / 60;
   const days = hours / 24;
@@ -54,7 +54,7 @@ function remaining(secs) {
     days remaining: ${daysRemaining} days ${hoursRemaining} hours ${minutesRemaining} minutes ${secondsRemaining} seconds
     hours remaining: ${Math.floor(hours)}
   `;
-}
+};
 
 export const countdown = (str) => {
   let date, time, month, day, year;
