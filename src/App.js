@@ -28,7 +28,7 @@ const SavedCountdowns = styled.div`
 `;
 
 function App({ countdowns }) {
-  const [localCountdowns, setLocalCountdowns] = useState([]);
+  const [localCountdown, setLocalCountdown] = useState('');
   const now = new Date();
 
   let year = now.getFullYear();
@@ -42,28 +42,20 @@ function App({ countdowns }) {
 
   const today = `${year}-${month}-${day}`;
 
+  console.log('local countdown', localCountdown);
+
   return (
     <AppContainer>
       <H1>⋆✩ 🎀 𝒸♡𝓊𝓃𝓉𝒹♡𝓌𝓃 𝑔𝒶𝓇𝒹𝑒𝓃 🎀 ✩⋆</H1>
       <DateForm
         today={today}
-        setLocalCountdowns={setLocalCountdowns}
-        localCountdowns={localCountdowns}
+        setLocalCountdown={setLocalCountdown}
+        localCountdowns={localCountdown}
       />
 
       <CountdownContainer>
-        {localCountdowns.length ? (
-          <>
-            {localCountdowns.map((countdown) => {
-              return (
-                <Countdown
-                  localCountdowns={localCountdowns}
-                  countdowns={countdowns}
-                  date={countdown}
-                />
-              );
-            })}
-          </>
+        {localCountdown.length ? (
+          <Countdown countdowns={countdowns} date={localCountdown} />
         ) : null}
 
         {countdowns.length ? (

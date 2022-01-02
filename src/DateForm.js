@@ -9,15 +9,14 @@ const StyledForm = styled(Form)`
   display: flex;
   justify-content: center;
   align-items: center;
-
   flex-wrap: wrap;
 `;
 
 const LabelContainer = styled.div`
-  ${'' /* margin-right: 1rem; */}
+  margin-right: 1rem;
   display: flex;
   flex-direction: column;
-  width: 50%;
+  ${'' /* width: calc(50% - 1rem); */}
 `;
 
 const Label = styled.label`
@@ -28,7 +27,16 @@ const Button = styled.button`
   margin-top: 1rem;
 `;
 
-const DateForm = ({ today, setLocalCountdowns, localCountdowns }) => {
+const SelectContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  select {
+    margin-right: 1rem;
+  }
+`;
+
+const DateForm = ({ today, setLocalCountdown }) => {
   return (
     <Formik
       initialValues={{ date: today, time: '12:00', AMPM: 'AM' }}
@@ -46,10 +54,10 @@ const DateForm = ({ today, setLocalCountdowns, localCountdowns }) => {
 
         const countdownDate = `${month}-${day}-${year} ${time}`;
 
-        if (getDifference(countdownDate) > 0) {
-          localCountdowns.push(countdownDate);
+        console.log(countdownDate);
 
-          setLocalCountdowns([...localCountdowns]);
+        if (getDifference(countdownDate) > 0) {
+          setLocalCountdown(countdownDate);
 
           setSubmitting(false);
         }
@@ -91,7 +99,7 @@ const DateForm = ({ today, setLocalCountdowns, localCountdowns }) => {
                 time:
               </Label>
 
-              <div>
+              <SelectContainer>
                 <Field as="select" name="time" id="time">
                   {hours.map((hour, key) => {
                     return (
@@ -106,7 +114,7 @@ const DateForm = ({ today, setLocalCountdowns, localCountdowns }) => {
                   <option value="AM">AM</option>
                   <option value="PM">PM</option>
                 </Field>
-              </div>
+              </SelectContainer>
             </LabelContainer>
 
             <div>

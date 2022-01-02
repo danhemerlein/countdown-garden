@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { addCountdown } from 'store/actions/countdowns';
 import styled from 'styled-components';
@@ -14,7 +15,12 @@ const Countdown = ({ date, countdowns }) => {
 
   const handleClick = () => {
     countdowns.push(date);
-    dispatch(addCountdown([...countdowns]));
+
+    if (countdowns.length < 4) {
+      dispatch(addCountdown([...countdowns]));
+    } else {
+      toast('three saved countdowns is the maxium');
+    }
   };
 
   return (
