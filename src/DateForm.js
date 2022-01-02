@@ -30,6 +30,8 @@ const DateForm = ({ today, setLocalCountdowns, localCountdowns }) => {
         if (getDifference(countdownDate) > 0) {
           localCountdowns.push(countdownDate);
 
+          console.log(localCountdowns);
+
           setLocalCountdowns([...localCountdowns]);
 
           setSubmitting(false);
@@ -41,7 +43,7 @@ const DateForm = ({ today, setLocalCountdowns, localCountdowns }) => {
         }
       }}
     >
-      {({ values, setFieldTouched, setFieldValue, handleReset }) => {
+      {({ values, setFieldTouched, setFieldValue }) => {
         const setDateValue = (date) => {
           setFieldTouched('date', true, false);
           return setFieldValue('date', date);

@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 const initState = {
   countdowns: [],
 };
@@ -7,18 +5,17 @@ const initState = {
 const countdownsReducer = (state = initState, action) => {
   switch (action.type) {
     case 'ADD_COUNTDOWN':
-    // state.countdowns.push(action.payload)
-    // return {
-    //   countdowns: state.countdowns,
-    // };
+      return {
+        countdowns: [...action.payload],
+      };
 
     case 'REMOVE_COUNTDOWN':
-      const cdsRemove = state.countdowns;
+      // const cdsRemove = state.countdowns;
 
-      _.pull(cdsRemove, action.payload);
+      // _.pull(cdsRemove, action.payload);
 
       return {
-        countdowns: cdsRemove,
+        countdowns: [...action.payload],
       };
 
     default:

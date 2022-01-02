@@ -14,6 +14,14 @@ const H1 = styled.h1`
   text-align: center;
 `;
 
+const CountdownContainer = styled.div`
+  display: flex;
+`;
+
+const SavedCountdowns = styled.div`
+  width: 50%;
+`;
+
 function App({ countdowns }) {
   const [localCountdowns, setLocalCountdowns] = useState([]);
   const now = new Date();
@@ -29,8 +37,6 @@ function App({ countdowns }) {
 
   const today = `${year}-${month}-${day}`;
 
-  console.log(countdowns);
-
   return (
     <AppContainer>
       <H1>⋆✩ 🎀 𝒸♡𝓊𝓃𝓉𝒹♡𝓌𝓃 𝑔𝒶𝓇𝒹𝑒𝓃 🎀 ✩⋆</H1>
@@ -40,15 +46,33 @@ function App({ countdowns }) {
         localCountdowns={localCountdowns}
       />
 
-      {localCountdowns.length ? (
-        <>
-          {localCountdowns.map((countdown) => {
-            return <Countdown date={countdown} />;
-          })}
-        </>
-      ) : null}
+      <CountdownContainer>
+        {localCountdowns.length ? (
+          <>
+            {localCountdowns.map((countdown) => {
+              return (
+                <Countdown
+                  localCountdowns={localCountdowns}
+                  countdowns={countdowns}
+                  date={countdown}
+                />
+              );
+            })}
+          </>
+        ) : null}
 
-      {countdowns.length ? <p>there are countdowns</p> : null}
+        {countdowns.length ? (
+          <SavedCountdowns>
+            <p>saved countdowns:</p>
+
+            <div>
+              {countdowns.map((countdown) => {
+                return <p>{countdown}</p>;
+              })}
+            </div>
+          </SavedCountdowns>
+        ) : null}
+      </CountdownContainer>
 
       <Toaster
         toastOptions={{
@@ -67,7 +91,7 @@ function App({ countdowns }) {
 
 const mapStateToProps = (state) => {
   return {
-    countdowns: state.countdowns,
+    countdowns: state.countdowns.countdowns,
   };
 };
 
