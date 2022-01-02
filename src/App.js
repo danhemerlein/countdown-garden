@@ -19,7 +19,12 @@ const CountdownContainer = styled.div`
 `;
 
 const SavedCountdowns = styled.div`
+  margin-top: 1rem;
   width: 50%;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 
 function App({ countdowns }) {
@@ -73,6 +78,27 @@ function App({ countdowns }) {
           </SavedCountdowns>
         ) : null}
       </CountdownContainer>
+
+      <footer>
+        <p>
+          a website by&nbsp;
+          <a
+            href="http://www.youngandnauseo.us"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            young and nauseous
+          </a>
+          &nbsp;
+          <a
+            href="https://github.com/danhemerlein/countdown-garden"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            view on GitHub
+          </a>
+        </p>
+      </footer>
 
       <Toaster
         toastOptions={{

@@ -4,9 +4,28 @@ import styled from 'styled-components';
 import { getDifference, hours } from 'utils';
 
 const StyledForm = styled(Form)`
-  width: 100%;
+  width: 30%;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
+  align-items: center;
+
+  flex-wrap: wrap;
+`;
+
+const LabelContainer = styled.div`
+  ${'' /* margin-right: 1rem; */}
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+`;
+
+const Label = styled.label`
+  margin-bottom: 0.5rem;
+`;
+
+const Button = styled.button`
+  margin-top: 1rem;
 `;
 
 const DateForm = ({ today, setLocalCountdowns, localCountdowns }) => {
@@ -29,8 +48,6 @@ const DateForm = ({ today, setLocalCountdowns, localCountdowns }) => {
 
         if (getDifference(countdownDate) > 0) {
           localCountdowns.push(countdownDate);
-
-          console.log(localCountdowns);
 
           setLocalCountdowns([...localCountdowns]);
 
@@ -55,39 +72,45 @@ const DateForm = ({ today, setLocalCountdowns, localCountdowns }) => {
         };
         return (
           <StyledForm id="calenders">
-            <label htmlFor="date">date</label>
+            <LabelContainer>
+              <Label htmlFor="date">date:</Label>
 
-            <input
-              type="date"
-              id="date"
-              name="date"
-              defaultValue={values.date}
-              min={today}
-              max="2122-12-31"
-              onChange={dateChangeHandler}
-            ></input>
+              <input
+                type="date"
+                id="date"
+                name="date"
+                defaultValue={values.date}
+                min={today}
+                max="2122-12-31"
+                onChange={dateChangeHandler}
+              ></input>
+            </LabelContainer>
 
-            <label as="label" htmlFor="time">
-              time:
-            </label>
+            <LabelContainer>
+              <Label as="label" htmlFor="time">
+                time:
+              </Label>
 
-            <Field as="select" name="time" id="time">
-              {hours.map((hour, key) => {
-                return (
-                  <option value={hour} key={hour}>
-                    {hour}
-                  </option>
-                );
-              })}
-            </Field>
+              <div>
+                <Field as="select" name="time" id="time">
+                  {hours.map((hour, key) => {
+                    return (
+                      <option value={hour} key={hour}>
+                        {hour}
+                      </option>
+                    );
+                  })}
+                </Field>
 
-            <Field as="select" name="AMPM" id="AMPM">
-              <option value="AM">AM</option>
-              <option value="PM">PM</option>
-            </Field>
+                <Field as="select" name="AMPM" id="AMPM">
+                  <option value="AM">AM</option>
+                  <option value="PM">PM</option>
+                </Field>
+              </div>
+            </LabelContainer>
 
             <div>
-              <button type="submit">create countdown</button>
+              <Button type="submit">create countdown</Button>
             </div>
           </StyledForm>
         );
