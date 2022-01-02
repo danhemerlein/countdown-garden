@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { buildDay } from 'utils';
 import Countdown from './Countdown';
+import SavedCountdown from './SavedCountdown';
 
 const AppContainer = styled.div`
   padding: 2rem;
@@ -64,7 +65,15 @@ function App({ countdowns }) {
 
             <div>
               {countdowns.map((countdown) => {
-                return <p>{countdown}</p>;
+                return (
+                  <>
+                    <SavedCountdown
+                      title={countdown}
+                      countdowns={countdowns}
+                      date={localCountdown}
+                    />
+                  </>
+                );
               })}
             </div>
           </SavedCountdowns>

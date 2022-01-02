@@ -58,7 +58,7 @@ export const remaining = (secs) => {
     `${daysRemaining} days ${hoursRemaining} hours ${minutesRemaining} minutes ${secondsRemaining} seconds`,
     `total hours remaining: ${numberWithCommas(hours)}`,
     `total minutes remaining: ${numberWithCommas(minutes)}`,
-    `total seconds remaining: ${numberWithCommas(secs)}`,
+    // `total seconds remaining: ${numberWithCommas(secs)}`,
   ];
 };
 

@@ -116,7 +116,6 @@ const DateForm = ({ today, setLocalCountdown }) => {
                 </Field>
               </SelectContainer>
             </LabelContainer>
-
             <div>
               <Button type="submit">create countdown</Button>
             </div>

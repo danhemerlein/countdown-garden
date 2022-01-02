@@ -10,10 +10,6 @@ const countdownsReducer = (state = initState, action) => {
       };
 
     case 'REMOVE_COUNTDOWN':
-      // const cdsRemove = state.countdowns;
-
-      // _.pull(cdsRemove, action.payload);
-
       return {
         countdowns: [...action.payload],
       };
