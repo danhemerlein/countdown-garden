@@ -14,12 +14,13 @@ const Footer = () => {
   return (
     <StyledFooter>
       <p>
+        view code on&nbsp;
         <a
           href="https://github.com/danhemerlein/countdown-garden"
           target="_blank"
           rel="noopener noreferrer"
         >
-          view code on GitHub
+          GitHub
         </a>
       </p>
       <p>
