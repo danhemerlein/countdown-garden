@@ -9,6 +9,10 @@ const P = styled.p`
   font-weight: bold;
 `;
 
+const Button = styled.button`
+  margin-bottom: 1rem;
+`;
+
 const SavedCountdown = ({ date, countdowns, title }) => {
   const dispatch = useDispatch();
 
@@ -30,7 +34,7 @@ const SavedCountdown = ({ date, countdowns, title }) => {
       {countdown(date).map((str) => {
         return <p key={str}>{str}</p>;
       })}
-      <button onClick={() => handleClick()}>remove countdown</button>
+      <Button onClick={() => handleClick()}>remove countdown</Button>
     </div>
   );
 };

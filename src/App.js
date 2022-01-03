@@ -1,15 +1,13 @@
 import DateForm from 'DateForm';
+import Footer from 'Footer';
 import { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { buildDay } from 'utils';
 import Countdown from './Countdown';
+import FullScreenHeight from './FullScreenHeight';
 import SavedCountdown from './SavedCountdown';
-
-const AppContainer = styled.div`
-  padding: 2rem;
-`;
 
 const H1 = styled.h1`
   text-align: center;
@@ -46,60 +44,41 @@ function App({ countdowns }) {
   console.log('local countdown', localCountdown);
 
   return (
-    <AppContainer>
-      <H1>⋆✩ 🎀 𝒸♡𝓊𝓃𝓉𝒹♡𝓌𝓃 𝑔𝒶𝓇𝒹𝑒𝓃 🎀 ✩⋆</H1>
-      <DateForm
-        today={today}
-        setLocalCountdown={setLocalCountdown}
-        localCountdowns={localCountdown}
-      />
+    <>
+      <FullScreenHeight unsetBreakpoint="desktop" direction="column">
+        <H1>⋆✩ 🎀 𝒸♡𝓊𝓃𝓉𝒹♡𝓌𝓃 𝑔𝒶𝓇𝒹𝑒𝓃 🎀 ✩⋆</H1>
+        <DateForm
+          today={today}
+          setLocalCountdown={setLocalCountdown}
+          localCountdowns={localCountdown}
+        />
 
-      <CountdownContainer>
-        {localCountdown.length ? (
-          <Countdown countdowns={countdowns} date={localCountdown} />
-        ) : null}
+        <CountdownContainer>
+          {localCountdown.length ? (
+            <Countdown countdowns={countdowns} date={localCountdown} />
+          ) : null}
 
-        {countdowns.length ? (
-          <SavedCountdowns>
-            <p>saved countdowns:</p>
+          {countdowns.length ? (
+            <SavedCountdowns>
+              <p>saved countdowns:</p>
 
-            <div>
-              {countdowns.map((countdown) => {
-                return (
-                  <>
+              <div>
+                {countdowns.map((countdown) => {
+                  return (
                     <SavedCountdown
                       title={countdown}
                       countdowns={countdowns}
                       date={localCountdown}
                     />
-                  </>
-                );
-              })}
-            </div>
-          </SavedCountdowns>
-        ) : null}
-      </CountdownContainer>
+                  );
+                })}
+              </div>
+            </SavedCountdowns>
+          ) : null}
+        </CountdownContainer>
+      </FullScreenHeight>
 
-      <footer>
-        <p>
-          a website by&nbsp;
-          <a
-            href="http://www.youngandnauseo.us"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            young and nauseous
-          </a>
-          &nbsp;
-          <a
-            href="https://github.com/danhemerlein/countdown-garden"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            view on GitHub
-          </a>
-        </p>
-      </footer>
+      <Footer />
 
       <Toaster
         toastOptions={{
@@ -112,7 +91,7 @@ function App({ countdowns }) {
           },
         }}
       />
-    </AppContainer>
+    </>
   );
 }
 

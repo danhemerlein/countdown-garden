@@ -14,12 +14,20 @@ const Countdown = ({ date, countdowns }) => {
   console.log('stateful countdowns', countdowns);
 
   const handleClick = () => {
-    countdowns.push(date);
+    const included = countdowns.includes(date);
 
-    if (countdowns.length < 4) {
-      dispatch(addCountdown([...countdowns]));
+    console.log(included);
+
+    if (!included) {
+      countdowns.push(date);
+
+      if (countdowns.length < 4) {
+        dispatch(addCountdown([...countdowns]));
+      } else {
+        toast('three saved countdowns is the maxium');
+      }
     } else {
-      toast('three saved countdowns is the maxium');
+      toast('a countdown with that date and time has already been saved');
     }
   };
 

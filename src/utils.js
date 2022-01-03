@@ -1,3 +1,5 @@
+import { css } from 'styled-components';
+
 /**
  * Returns string - a number of greater than four digits will have appropriate comma separation
  * @param {number} num
@@ -81,4 +83,28 @@ export const countdown = (str) => {
   const seconds = difference / 1000;
 
   return remaining(seconds);
+};
+
+// media queries in styled components
+const sizes = {
+  mobile: 320,
+  tablet: 720,
+  desktop: 1024,
+  'desktop-max': 1440,
+};
+
+export const above = Object.keys(sizes).reduce((accumulater, label) => {
+  accumulater[label] = (...args) => css`
+    @media (min-width: ${sizes[label]}px) {
+      ${css(...args)}
+    }
+  `;
+  return accumulater;
+}, {});
+
+export const BREAKPOINT = {
+  mobile: '320px',
+  tablet: '720px',
+  desktop: '1024px',
+  desktopMax: '1440px',
 };
