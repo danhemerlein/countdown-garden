@@ -6,13 +6,13 @@ import rootReducer from '../store/reducers';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-// const persistConfig = {
-//   key: 'countdowns',
-//   storage,
-//   whitelist: ['countdowns'],
-// };
+const persistConfig = {
+  key: 'countdowns',
+  storage,
+  whitelist: ['countdowns'],
+};
 
-const persistConfig = { key: 'fake key', storage, blacklist: ['countdowns'] };
+// const persistConfig = { key: 'fake key', storage, blacklist: ['countdowns'] };
 
 const pReducer = persistReducer(persistConfig, rootReducer);
 

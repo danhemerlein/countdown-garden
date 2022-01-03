@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { BREAKPOINT } from 'utils';
 
 const Container = styled.div`
-  height: 100%;
+  height: calc(100% - 32px);
   display: flex;
   padding: 2rem;
 
@@ -22,9 +22,6 @@ const FullScreenHeight = ({
   direction,
   noTopPadding,
 }) => {
-  // const PADDING = 64;
-  // const offset = FOOTER_HEIGHT + PADDING;
-
   const FOOTER_HEIGHT = 82;
   const offset = FOOTER_HEIGHT;
 

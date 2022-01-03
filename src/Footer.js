@@ -1,16 +1,27 @@
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
-  ${'' /* min-height: 22px; */}
   padding: 2rem;
+  display: flex;
+  justify-content: space-between;
   p {
     margin: 0;
+    width: ;
   }
 `;
 
 const Footer = () => {
   return (
     <StyledFooter>
+      <p>
+        <a
+          href="https://github.com/danhemerlein/countdown-garden"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          view code on GitHub
+        </a>
+      </p>
       <p>
         a website by&nbsp;
         <a
@@ -19,14 +30,6 @@ const Footer = () => {
           rel="noopener noreferrer"
         >
           young and nauseous
-        </a>
-        &nbsp;
-        <a
-          href="https://github.com/danhemerlein/countdown-garden"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          view on GitHub
         </a>
       </p>
     </StyledFooter>

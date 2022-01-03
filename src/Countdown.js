@@ -11,12 +11,8 @@ const Container = styled.div`
 const Countdown = ({ date, countdowns }) => {
   const dispatch = useDispatch();
 
-  console.log('stateful countdowns', countdowns);
-
   const handleClick = () => {
     const included = countdowns.includes(date);
-
-    console.log(included);
 
     if (!included) {
       countdowns.push(date);

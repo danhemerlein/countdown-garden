@@ -9,11 +9,17 @@ const P = styled.p`
   font-weight: bold;
 `;
 
-const Button = styled.button`
+const RemoveButton = styled.button`
   margin-bottom: 1rem;
+  margin-right: 0.5rem;
 `;
 
-const SavedCountdown = ({ date, countdowns, title }) => {
+const LinkButton = styled.button`
+  margin-bottom: 1rem;
+  margin-left: 0.5rem;
+`;
+
+const SavedCountdown = ({ countdowns, title }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
@@ -22,19 +28,31 @@ const SavedCountdown = ({ date, countdowns, title }) => {
     _.pull(cdsRemove, title);
 
     if (countdowns.length < 4) {
-      dispatch(removeCountdown([...countdowns]));
+      dispatch(removeCountdown([...cdsRemove]));
     } else {
       toast('three saved countdowns is the maxium');
     }
   };
 
+  const createLink = (title) => {
+    navigator.clipboard.writeText(
+      `http://localhost:3000/d${title.replace(' ', 't')}`
+    );
+    toast('link copied to clipboard');
+  };
+
   return (
     <div>
       <P>{title}</P>
-      {countdown(date).map((str) => {
+
+      {countdown(title).map((str) => {
         return <p key={str}>{str}</p>;
       })}
-      <Button onClick={() => handleClick()}>remove countdown</Button>
+
+      <RemoveButton onClick={() => handleClick()}>
+        remove countdown
+      </RemoveButton>
+      <LinkButton onClick={() => createLink(title)}>copy link</LinkButton>
     </div>
   );
 };

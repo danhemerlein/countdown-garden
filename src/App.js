@@ -1,6 +1,6 @@
 import DateForm from 'DateForm';
 import Footer from 'Footer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -15,6 +15,8 @@ const H1 = styled.h1`
 
 const CountdownContainer = styled.div`
   display: flex;
+  justify-content: space-evenly;
+  overflow: hidden;
 `;
 
 const SavedCountdowns = styled.div`
@@ -24,6 +26,8 @@ const SavedCountdowns = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  overflow: scroll;
 `;
 
 function App({ countdowns }) {
@@ -41,7 +45,20 @@ function App({ countdowns }) {
 
   const today = `${year}-${month}-${day}`;
 
-  console.log('local countdown', localCountdown);
+  useEffect(() => {
+    const query = window.location.href
+      .replace(window.location.origin, '')
+      .replace('/', '');
+
+    const regex = /d\d\d-\d\d-\d\d\d\dt\d\d:\d\d/;
+
+    if (query.length && query.match(regex)) {
+      const split = query.split('t');
+      let [date, time] = split;
+
+      setLocalCountdown(`${date.replace('d', '')} ${time}`);
+    }
+  }, []);
 
   return (
     <>
@@ -65,11 +82,7 @@ function App({ countdowns }) {
               <div>
                 {countdowns.map((countdown) => {
                   return (
-                    <SavedCountdown
-                      title={countdown}
-                      countdowns={countdowns}
-                      date={localCountdown}
-                    />
+                    <SavedCountdown title={countdown} countdowns={countdowns} />
                   );
                 })}
               </div>
