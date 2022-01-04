@@ -14,6 +14,10 @@ const H1 = styled.h1`
   text-align: center;
 `;
 
+const Title = styled.p`
+  margin-top: 0;
+`;
+
 const Quote = styled.h2`
   text-align: center;
   margin: 0 0 0.67em 0;
@@ -50,6 +54,7 @@ const SavedCountdowns = styled.div`
   align-items: center;
   flex-direction: column;
   overflow: scroll;
+  padding: 1rem;
 
   width: 100%;
 
@@ -114,15 +119,15 @@ function App({ countdowns }) {
 
           {countdowns.length ? (
             <SavedCountdowns>
-              <p>saved countdowns:</p>
+              <Title>saved countdowns:</Title>
 
-              <div>
+              <>
                 {countdowns.map((countdown) => {
                   return (
                     <SavedCountdown title={countdown} countdowns={countdowns} />
                   );
                 })}
-              </div>
+              </>
             </SavedCountdowns>
           ) : null}
         </CountdownContainer>

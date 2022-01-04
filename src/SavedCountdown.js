@@ -7,15 +7,16 @@ import { countdown } from 'utils';
 
 const P = styled.p`
   font-weight: bold;
+  margin-top: 0;
 `;
 
 const RemoveButton = styled.button`
-  margin-bottom: 1rem;
+  ${'' /* margin-bottom: 1rem; */}
   margin-right: 0.5rem;
 `;
 
 const LinkButton = styled.button`
-  margin-bottom: 1rem;
+  ${'' /* margin-bottom: 1rem; */}
   margin-left: 0.5rem;
 `;
 
