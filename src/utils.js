@@ -109,7 +109,17 @@ export const BREAKPOINT = {
   desktopMax: '1440px',
 };
 
-export const quotes = ['quote 1', 'quote 2', 'quote 3', 'quote 4', 'quote 5'];
+export const quotes = [
+  '"So it is: We are not given a short life but we make it short, and we are not ill-supplied but wasteful of it...Life is long know if you know how to use it." - Seneca',
+
+  '"To be idle is a short toad to death and to be dilligent is a way of life; foolish people are idle, wise people are dilligent" - Buddah',
+
+  '"A man who wastes and hour of time has not discovered the value of life" - Charles Darwin',
+
+  `"O Allah, I seek refuge if you from incapability and laziness" - Islamic Du'a -`,
+
+  '"Go to the ant, O sluggard, Observe her ways and be wise, Which, having no chief, Officer or ruler, Prepares her food in the summer And gathers her provision in the harvest" - Proverbs 6:6-8',
+];
 
 export const getRandomElement = (arr) => {
   return arr[Math.floor(Math.random() * arr.length)];

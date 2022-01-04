@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { buildDay, getRandomElement, quotes } from 'utils';
+import { above, buildDay, getRandomElement, quotes } from 'utils';
 import Countdown from './Countdown';
 import FullScreenHeight from './FullScreenHeight';
 import SavedCountdown from './SavedCountdown';
@@ -23,25 +23,39 @@ const CountdownContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   overflow: hidden;
+  flex-wrap: wrap;
+
+  ${above.desktop`
+    flex-wrap: nowrap;
+  `}
 `;
 
 const LocalCountdown = styled.div`
   margin-top: 1rem;
-  width: 50%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  ${above.desktop`
+    width: 50%;
+  `}
 `;
 
 const SavedCountdowns = styled.div`
   margin-top: 1rem;
-  width: 50%;
   border: 1px solid black;
   display: flex;
   align-items: center;
   flex-direction: column;
   overflow: scroll;
+
+  width: 100%;
+
+  ${above.desktop`
+    width: 50%;
+  `}
 `;
 
 function App({ countdowns }) {
