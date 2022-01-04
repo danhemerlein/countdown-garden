@@ -108,3 +108,9 @@ export const BREAKPOINT = {
   desktop: '1024px',
   desktopMax: '1440px',
 };
+
+export const quotes = ['quote 1', 'quote 2', 'quote 3', 'quote 4', 'quote 5'];
+
+export const getRandomElement = (arr) => {
+  return arr[Math.floor(Math.random() * arr.length)];
+};

@@ -1,10 +1,11 @@
+import VisuallyHidden from '@reach/visually-hidden';
 import DateForm from 'DateForm';
 import Footer from 'Footer';
 import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { buildDay } from 'utils';
+import { buildDay, getRandomElement, quotes } from 'utils';
 import Countdown from './Countdown';
 import FullScreenHeight from './FullScreenHeight';
 import SavedCountdown from './SavedCountdown';
@@ -13,10 +14,24 @@ const H1 = styled.h1`
   text-align: center;
 `;
 
+const Quote = styled.h2`
+  text-align: center;
+  margin: 0 0 0.67em 0;
+`;
+
 const CountdownContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   overflow: hidden;
+`;
+
+const LocalCountdown = styled.div`
+  margin-top: 1rem;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 const SavedCountdowns = styled.div`
@@ -26,7 +41,6 @@ const SavedCountdowns = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-
   overflow: scroll;
 `;
 
@@ -63,7 +77,14 @@ function App({ countdowns }) {
   return (
     <>
       <FullScreenHeight unsetBreakpoint="desktop" direction="column">
-        <H1>⋆✩ 🎀 𝒸♡𝓊𝓃𝓉𝒹♡𝓌𝓃 𝑔𝒶𝓇𝒹𝑒𝓃 🎀 ✩⋆</H1>
+        <H1>⋆✩♡✩⋆ 🌹 𝒸🌸𝓊𝓃𝓉𝒹🌺𝓌𝓃 𝑔𝒶𝓇𝒹𝑒𝓃 🌹 ⋆✩♡✩⋆</H1>
+
+        <VisuallyHidden>countdown garden</VisuallyHidden>
+
+        <Quote>
+          <em>{getRandomElement(quotes)}</em>
+        </Quote>
+
         <DateForm
           today={today}
           setLocalCountdown={setLocalCountdown}
@@ -72,7 +93,9 @@ function App({ countdowns }) {
 
         <CountdownContainer>
           {localCountdown.length ? (
-            <Countdown countdowns={countdowns} date={localCountdown} />
+            <LocalCountdown>
+              <Countdown countdowns={countdowns} date={localCountdown} />
+            </LocalCountdown>
           ) : null}
 
           {countdowns.length ? (
