@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import { BREAKPOINT } from 'utils';
 
 const Container = styled.div`
-  height: calc(100% - 32px);
+  height: calc(100% - 16px);
   display: flex;
-  padding: 2rem;
+  padding: 1rem;
 
   ${({ justify }) => justify && `justify-content: ${justify};`}
   ${({ items }) => items && `align-items: ${items};`}
@@ -21,9 +21,10 @@ const FullScreenHeight = ({
   items,
   direction,
   noTopPadding,
+  addtlOffset,
 }) => {
-  const FOOTER_HEIGHT = 82;
-  const offset = FOOTER_HEIGHT;
+  // const FOOTER_HEIGHT = 50;
+  const offset = addtlOffset;
 
   const height = use100vh();
 

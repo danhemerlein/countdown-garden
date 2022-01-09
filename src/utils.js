@@ -70,7 +70,9 @@ export const getDifference = (str) => {
   [date, time] = str.split(' ');
   [month, day, year] = date.split('-');
 
-  const target = new Date(`${month} ${day}, ${year} ${time}`);
+  const build = `${month}-${day}-${year} ${time}`;
+
+  const target = new Date(build.replace(/-/g, '/'));
 
   const difference = target - now;
 
