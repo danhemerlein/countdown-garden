@@ -1,3 +1,4 @@
+import Footer from 'Footer';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -17,6 +18,9 @@ const showApp = hours < 21 && hours > 7;
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>{showApp ? <App /> : <Closed />}</Provider>
+    <div>
+      <Footer />
+    </div>
   </React.StrictMode>,
   rootElement
 );

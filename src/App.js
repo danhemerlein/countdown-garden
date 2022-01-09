@@ -1,6 +1,5 @@
 import VisuallyHidden from '@reach/visually-hidden';
 import DateForm from 'DateForm';
-import Footer from 'Footer';
 import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { connect } from 'react-redux';
@@ -136,8 +135,6 @@ function App({ countdowns }) {
           ) : null}
         </CountdownContainer>
       </FullScreenHeight>
-
-      <Footer />
 
       <Toaster
         toastOptions={{
