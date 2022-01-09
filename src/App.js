@@ -124,7 +124,11 @@ function App({ countdowns }) {
               <>
                 {countdowns.map((countdown) => {
                   return (
-                    <SavedCountdown title={countdown} countdowns={countdowns} />
+                    <SavedCountdown
+                      key={countdown}
+                      title={countdown}
+                      countdowns={countdowns}
+                    />
                   );
                 })}
               </>

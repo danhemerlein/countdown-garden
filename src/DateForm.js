@@ -1,26 +1,36 @@
 import { Field, Form, Formik } from 'formik';
 import toast from 'react-hot-toast';
 import styled from 'styled-components';
-import { getDifference, hours } from 'utils';
+import { above, getDifference, hours } from 'utils';
 
 const StyledForm = styled(Form)`
-  width: 30%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  width: 100%;
+
+  ${above.desktop`
+    width: 25%;
+  `}
 `;
 
 const LabelContainer = styled.div`
-  margin-right: 1rem;
   display: flex;
   flex-direction: column;
-  ${'' /* width: calc(50% - 1rem); */}
+  width: 50%;
+  justify-content: space-between;
+  height: 50px;
 `;
 
-const Label = styled.label`
-  margin-bottom: 0.5rem;
+const DateLabelContainer = styled(LabelContainer)`
+  width: calc(50% - 1rem);
+  margin-right: 1rem;
+`;
+
+const TimeLabelContainer = styled(LabelContainer)`
+  justify-content: space-between;
 `;
 
 const Button = styled.button`
@@ -30,8 +40,13 @@ const Button = styled.button`
 const SelectContainer = styled.div`
   display: flex;
   align-items: center;
+  height: 24px;
 
   select {
+    height: 24px;
+  }
+
+  select:first-of-type {
     margin-right: 1rem;
   }
 `;
@@ -53,8 +68,6 @@ const DateForm = ({ today, setLocalCountdown }) => {
         }
 
         const countdownDate = `${month}-${day}-${year} ${time}`;
-
-        console.log(countdownDate);
 
         if (getDifference(countdownDate) > 0) {
           setLocalCountdown(countdownDate);
@@ -80,8 +93,8 @@ const DateForm = ({ today, setLocalCountdown }) => {
         };
         return (
           <StyledForm id="calenders">
-            <LabelContainer>
-              <Label htmlFor="date">date:</Label>
+            <DateLabelContainer>
+              <label htmlFor="date">date:</label>
 
               <input
                 type="date"
@@ -92,12 +105,12 @@ const DateForm = ({ today, setLocalCountdown }) => {
                 max="2122-12-31"
                 onChange={dateChangeHandler}
               ></input>
-            </LabelContainer>
+            </DateLabelContainer>
 
-            <LabelContainer>
-              <Label as="label" htmlFor="time">
+            <TimeLabelContainer>
+              <label as="label" htmlFor="time">
                 time:
-              </Label>
+              </label>
 
               <SelectContainer>
                 <Field as="select" name="time" id="time">
@@ -115,7 +128,7 @@ const DateForm = ({ today, setLocalCountdown }) => {
                   <option value="PM">PM</option>
                 </Field>
               </SelectContainer>
-            </LabelContainer>
+            </TimeLabelContainer>
             <div>
               <Button type="submit">create countdown</Button>
             </div>
