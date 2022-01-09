@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { countdown } from 'utils';
 
 const Container = styled.div`
-  margin-top: 1rem;
+  margin-bottom: 1rem;
 `;
 
 const P = styled.p`
@@ -14,11 +14,19 @@ const P = styled.p`
   margin-top: 0;
 `;
 
-const RemoveButton = styled.button`
+const Button = styled.button`
+  background: transparent;
+  border: 1px solid black;
+  border-radius: 0;
+  color: black;
+  padding: 0.5rem;
+`;
+
+const RemoveButton = styled(Button)`
   margin-right: 0.5rem;
 `;
 
-const LinkButton = styled.button`
+const LinkButton = styled(Button)`
   margin-left: 0.5rem;
 `;
 

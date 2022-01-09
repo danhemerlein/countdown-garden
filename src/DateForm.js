@@ -12,7 +12,7 @@ const StyledForm = styled(Form)`
   width: 100%;
 
   ${above.desktop`
-    width: 25%;
+    width: 35%;
   `}
 `;
 
@@ -22,11 +22,19 @@ const LabelContainer = styled.div`
   justify-content: space-between;
 
   width: 100%;
-  height: 50px;
+  height: 70px;
 
   ${above.desktop`
     width: 50%;
   `}
+
+  input, select {
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 0;
+    color: black;
+    cursor: pointer;
+  }
 `;
 
 const DateLabelContainer = styled(LabelContainer)`
@@ -34,6 +42,10 @@ const DateLabelContainer = styled(LabelContainer)`
     width: calc(50% - 1rem);
     margin-right: 1rem;
   `}
+
+  input {
+    padding: 0.75rem;
+  }
 `;
 
 const TimeLabelContainer = styled(LabelContainer)`
@@ -46,16 +58,20 @@ const TimeLabelContainer = styled(LabelContainer)`
 `;
 
 const Button = styled.button`
+  background: transparent;
   margin-top: 1rem;
+  border: 1px solid black;
+  border-radius: 0;
+  color: black;
+  padding: 0.5rem;
 `;
 
 const SelectContainer = styled.div`
   display: flex;
   align-items: center;
-  height: 24px;
 
   select {
-    height: 24px;
+    padding: 0.75rem;
     width: 50%;
   }
 

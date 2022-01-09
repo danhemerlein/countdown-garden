@@ -14,12 +14,15 @@ const H1 = styled.h1`
 
 const Title = styled.p`
   margin-top: 0;
-  margin-bottom: 0;
 `;
 
 const Quote = styled.h2`
   text-align: center;
-  margin: 0 0 0.67em 0;
+  margin: 0 auto 0.67em auto;
+
+  ${above.desktop`
+    width: 50%;
+  `}
 `;
 
 const CountdownContainer = styled.div`

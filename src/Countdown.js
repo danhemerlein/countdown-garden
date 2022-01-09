@@ -2,15 +2,24 @@ import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { addCountdown } from 'store/actions/countdowns';
 import styled from 'styled-components';
-import { countdown } from 'utils';
+import { above, countdown } from 'utils';
 
 const Container = styled.div`
-  width: 50%;
+  width: 100%;
+
+  ${above.desktop`
+    width: 50%;
+  `}
 `;
 
 const StyledButton = styled.button`
+  background: transparent;
   margin: 0 auto;
   display: block;
+  border: 1px solid black;
+  border-radius: 0;
+  color: black;
+  padding: 0.5rem;
 `;
 
 const Countdown = ({ date, countdowns }) => {
