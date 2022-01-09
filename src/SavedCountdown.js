@@ -47,7 +47,7 @@ const SavedCountdown = ({ countdowns, title }) => {
 
   const createLink = (title) => {
     navigator.clipboard.writeText(
-      `http://localhost:3000/d${title.replace(' ', 't')}`
+      `https://countdown-garden.art/d${title.replace(' ', 't')}`
     );
     toast('link copied to clipboard');
   };
