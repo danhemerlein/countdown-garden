@@ -91,6 +91,8 @@ const Garden = ({ countdowns, footerHeight }) => {
     }
   }, []);
 
+  console.log('local countdown', localCountdown);
+
   return (
     <>
       <FullScreenHeight

@@ -18,8 +18,6 @@ const App = () => {
     setHeight(ref.current.clientHeight);
   }, [height]);
 
-  console.log(height);
-
   return (
     <>
       {showGarden ? (
