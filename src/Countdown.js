@@ -8,6 +8,11 @@ const Container = styled.div`
   width: 50%;
 `;
 
+const StyledButton = styled.button`
+  margin: 0 auto;
+  display: block;
+`;
+
 const Countdown = ({ date, countdowns }) => {
   const dispatch = useDispatch();
 
@@ -32,7 +37,7 @@ const Countdown = ({ date, countdowns }) => {
       {countdown(date).map((str) => {
         return <p key={str}>{str}</p>;
       })}
-      <button onClick={() => handleClick()}>save countdown?</button>
+      <StyledButton onClick={() => handleClick()}>save countdown?</StyledButton>
     </Container>
   );
 };

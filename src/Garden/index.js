@@ -14,6 +14,7 @@ const H1 = styled.h1`
 
 const Title = styled.p`
   margin-top: 0;
+  margin-bottom: 0;
 `;
 
 const Quote = styled.h2`
