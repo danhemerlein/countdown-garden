@@ -19,18 +19,30 @@ const StyledForm = styled(Form)`
 const LabelContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
   justify-content: space-between;
+
+  width: 100%;
   height: 50px;
+
+  ${above.desktop`
+    width: 50%;
+  `}
 `;
 
 const DateLabelContainer = styled(LabelContainer)`
-  width: calc(50% - 1rem);
-  margin-right: 1rem;
+  ${above.desktop`
+    width: calc(50% - 1rem);
+    margin-right: 1rem;
+  `}
 `;
 
 const TimeLabelContainer = styled(LabelContainer)`
   justify-content: space-between;
+  margin-top: 1rem;
+
+  ${above.desktop`
+    margin-top: 0rem;
+  `}
 `;
 
 const Button = styled.button`
@@ -44,9 +56,11 @@ const SelectContainer = styled.div`
 
   select {
     height: 24px;
+    width: 50%;
   }
 
   select:first-of-type {
+    width: calc(50% - rem);
     margin-right: 1rem;
   }
 `;

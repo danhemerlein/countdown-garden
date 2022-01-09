@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
+
   p {
     margin: 0;
-    width: ;
   }
+`;
+
+const Attribution = styled.p`
+  text-align: right;
 `;
 
 const Footer = () => {
@@ -23,8 +27,17 @@ const Footer = () => {
           GitHub
         </a>
       </p>
-      <p>
+
+      <Attribution>
         a website by&nbsp;
+        <a
+          href="http://www.danhemerlein.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          dan hemerlein
+        </a>
+        <span>&nbsp;c/o&nbsp;</span>
         <a
           href="http://www.youngandnauseo.us"
           target="_blank"
@@ -32,7 +45,7 @@ const Footer = () => {
         >
           young and nauseous
         </a>
-      </p>
+      </Attribution>
     </StyledFooter>
   );
 };
