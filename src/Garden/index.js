@@ -18,7 +18,11 @@ const Title = styled.p`
 
 const Quote = styled.h2`
   text-align: center;
-  margin: 0 0 0.67em 0;
+  margin: 0 auto 0.67em auto;
+
+  ${above.desktop`
+    width: 50%;
+  `}
 `;
 
 const CountdownContainer = styled.div`

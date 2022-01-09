@@ -5,18 +5,28 @@ import { removeCountdown } from 'store/actions/countdowns';
 import styled from 'styled-components';
 import { countdown } from 'utils';
 
+const Container = styled.div`
+  margin-bottom: 1rem;
+`;
+
 const P = styled.p`
   font-weight: bold;
   margin-top: 0;
 `;
 
-const RemoveButton = styled.button`
-  ${'' /* margin-bottom: 1rem; */}
+const Button = styled.button`
+  background: transparent;
+  border: 1px solid black;
+  border-radius: 0;
+  color: black;
+  padding: 0.5rem;
+`;
+
+const RemoveButton = styled(Button)`
   margin-right: 0.5rem;
 `;
 
-const LinkButton = styled.button`
-  ${'' /* margin-bottom: 1rem; */}
+const LinkButton = styled(Button)`
   margin-left: 0.5rem;
 `;
 
@@ -43,7 +53,7 @@ const SavedCountdown = ({ countdowns, title }) => {
   };
 
   return (
-    <div>
+    <Container>
       <P>{title}</P>
 
       {countdown(title).map((str) => {
@@ -54,7 +64,7 @@ const SavedCountdown = ({ countdowns, title }) => {
         remove countdown
       </RemoveButton>
       <LinkButton onClick={() => createLink(title)}>copy link</LinkButton>
-    </div>
+    </Container>
   );
 };
 
