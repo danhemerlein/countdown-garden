@@ -65,15 +65,12 @@ export const remaining = (secs) => {
 };
 
 export const getDifference = (str) => {
-  console.log('getDifference string', str);
   let date, time, month, day, year;
   const now = Date.now();
   [date, time] = str.split(' ');
   [month, day, year] = date.split('-');
 
   const build = `${month}-${day}-${year} ${time}`;
-
-  console.log('build: ', build);
 
   const target = new Date(build.replace(/-/g, '/'));
 

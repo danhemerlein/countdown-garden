@@ -83,10 +83,7 @@ const DateForm = ({ today, setLocalCountdown }) => {
 
         const countdownDate = `${month}-${day}-${year} ${time}`;
 
-        console.log(getDifference(countdownDate));
-
         if (getDifference(countdownDate) > 0) {
-          console.log('about to set the local countdown', countdownDate);
           setLocalCountdown(countdownDate);
 
           setSubmitting(false);
