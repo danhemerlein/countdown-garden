@@ -21,9 +21,10 @@ const FullScreenHeight = ({
   items,
   direction,
   noTopPadding,
+  addtlOffset,
 }) => {
-  const FOOTER_HEIGHT = 50;
-  const offset = FOOTER_HEIGHT;
+  // const FOOTER_HEIGHT = 50;
+  const offset = addtlOffset;
 
   const height = use100vh();
 

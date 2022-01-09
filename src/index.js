@@ -1,26 +1,18 @@
-import Footer from 'Footer';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './App';
-import Closed from './Closed';
 import { store } from './redux/store';
 import reportWebVitals from './reportWebVitals';
+// import { useFooterData } from 'utils';
 
 const rootElement = document.getElementById('root');
 
-const now = new Date();
-
-let hours = now.getHours();
-
-const showApp = hours < 21 && hours > 7;
-
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>{showApp ? <App /> : <Closed />}</Provider>
-    <div>
-      <Footer />
-    </div>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   rootElement
 );
