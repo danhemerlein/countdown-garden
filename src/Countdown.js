@@ -43,9 +43,9 @@ const Countdown = ({ date, countdowns }) => {
 
   return (
     <Container>
-      {countdown(date).map((str) => {
-        return <p key={str}>{str}</p>;
-      })}
+      {countdown(date).map((str) => (
+        <p key={str}>{str}</p>
+      ))}
       <StyledButton onClick={() => handleClick()}>save countdown?</StyledButton>
     </Container>
   );

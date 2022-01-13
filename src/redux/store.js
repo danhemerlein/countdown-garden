@@ -9,7 +9,7 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const persistConfig = {
   key: 'countdowns',
   storage,
-  whitelist: ['countdowns'],
+  whitelist: ['countdowns']
 };
 
 // const persistConfig = { key: 'fake key', storage, blacklist: ['countdowns'] };

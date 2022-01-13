@@ -37,7 +37,7 @@ export const hours = [
   '10:00',
   '10:30',
   '11:00',
-  '11:30',
+  '11:30'
 ];
 
 export function buildDay(day) {
@@ -59,16 +59,15 @@ export const remaining = (secs) => {
   return [
     `${daysRemaining} days ${hoursRemaining} hours ${minutesRemaining} minutes ${secondsRemaining} seconds`,
     `total hours remaining: ${numberWithCommas(hours)}`,
-    `total minutes remaining: ${numberWithCommas(minutes)}`,
+    `total minutes remaining: ${numberWithCommas(minutes)}`
     // `total seconds remaining: ${numberWithCommas(secs)}`,
   ];
 };
 
 export const getDifference = (str) => {
-  let date, time, month, day, year;
   const now = Date.now();
-  [date, time] = str.split(' ');
-  [month, day, year] = date.split('-');
+  const [date, time] = str.split(' ');
+  const [month, day, year] = date.split('-');
 
   const build = `${month}-${day}-${year} ${time}`;
 
@@ -92,7 +91,7 @@ const sizes = {
   mobile: 320,
   tablet: 720,
   desktop: 1024,
-  'desktop-max': 1440,
+  'desktop-max': 1440
 };
 
 export const above = Object.keys(sizes).reduce((accumulater, label) => {
@@ -108,7 +107,7 @@ export const BREAKPOINT = {
   mobile: '320px',
   tablet: '720px',
   desktop: '1024px',
-  desktopMax: '1440px',
+  desktopMax: '1440px'
 };
 
 export const quotes = [
@@ -120,9 +119,8 @@ export const quotes = [
 
   `"O Allah, I seek refuge if you from incapability and laziness" - Islamic Du'a -`,
 
-  '"Go to the ant, O sluggard, Observe her ways and be wise, Which, having no chief, Officer or ruler, Prepares her food in the summer And gathers her provision in the harvest" - Proverbs 6:6-8',
+  '"Go to the ant, O sluggard, Observe her ways and be wise, Which, having no chief, Officer or ruler, Prepares her food in the summer And gathers her provision in the harvest" - Proverbs 6:6-8'
 ];
 
-export const getRandomElement = (arr) => {
-  return arr[Math.floor(Math.random() * arr.length)];
-};
+export const getRandomElement = (arr) =>
+  arr[Math.floor(Math.random() * arr.length)];

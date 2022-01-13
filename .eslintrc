@@ -1,0 +1,23 @@
+{
+  "extends": [ "wesbos" ],
+
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  },
+
+  "rules": {
+    "no-shadow":"off",
+    "react/prop-types": "off",
+    "arrow-body-style": "warn",
+    "no-use-before-define": "off",
+    "array-callback-return": "warn",
+    "no-sequences": "off",
+    "default-param-last": "off",
+    "react/destructuring-assignment": "warn",
+    "prettier/prettier": ["warn", {"trailingComma": "none"}]
+  }
+}
