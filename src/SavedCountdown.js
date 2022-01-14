@@ -56,9 +56,9 @@ const SavedCountdown = ({ countdowns, title }) => {
     <Container>
       <P>{title}</P>
 
-      {countdown(title).map((str) => {
-        return <p key={str}>{str}</p>;
-      })}
+      {countdown(title).map((str) => (
+        <p key={str}>{str}</p>
+      ))}
 
       <RemoveButton onClick={() => handleClick()}>
         remove countdown

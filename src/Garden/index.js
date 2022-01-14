@@ -69,13 +69,13 @@ const Garden = ({ countdowns, footerHeight }) => {
   const [localCountdown, setLocalCountdown] = useState('');
   const now = new Date();
 
-  let year = now.getFullYear();
+  const year = now.getFullYear();
   let month = now.getMonth();
   let day = now.getDate();
 
   day = buildDay(day);
 
-  month = month + 1;
+  month += 1;
   month = buildDay(month);
 
   const today = `${year}-${month}-${day}`;
@@ -89,67 +89,61 @@ const Garden = ({ countdowns, footerHeight }) => {
 
     if (query.length && query.match(regex)) {
       const split = query.split('t');
-      let [date, time] = split;
+      const [date, time] = split;
 
       setLocalCountdown(`${date.replace('d', '')} ${time}`);
     }
   }, []);
 
   return (
-    <>
-      <FullScreenHeight
-        unsetBreakpoint="desktop"
-        direction="column"
-        addtlOffset={footerHeight}
-      >
-        <H1>⋆✩♡✩⋆ 🌹 𝒸🌸𝓊𝓃𝓉𝒹🌺𝓌𝓃 𝑔𝒶𝓇𝒹𝑒𝓃 🌹 ⋆✩♡✩⋆</H1>
+    <FullScreenHeight
+      unsetBreakpoint="desktop"
+      direction="column"
+      addtlOffset={footerHeight}
+    >
+      <H1>⋆✩♡✩⋆ 🌹 𝒸🌸𝓊𝓃𝓉𝒹🌺𝓌𝓃 𝑔𝒶𝓇𝒹𝑒𝓃 🌹 ⋆✩♡✩⋆</H1>
 
-        <VisuallyHidden>countdown garden</VisuallyHidden>
+      <VisuallyHidden>countdown garden</VisuallyHidden>
 
-        <Quote>
-          <em>{getRandomElement(quotes)}</em>
-        </Quote>
+      <Quote>
+        <em>{getRandomElement(quotes)}</em>
+      </Quote>
 
-        <DateForm
-          today={today}
-          setLocalCountdown={setLocalCountdown}
-          localCountdowns={localCountdown}
-        />
+      <DateForm
+        today={today}
+        setLocalCountdown={setLocalCountdown}
+        localCountdowns={localCountdown}
+      />
 
-        <CountdownContainer>
-          {localCountdown.length ? (
-            <LocalCountdown>
-              <Countdown countdowns={countdowns} date={localCountdown} />
-            </LocalCountdown>
-          ) : null}
+      <CountdownContainer>
+        {localCountdown.length ? (
+          <LocalCountdown>
+            <Countdown countdowns={countdowns} date={localCountdown} />
+          </LocalCountdown>
+        ) : null}
 
-          {countdowns.length ? (
-            <SavedCountdowns>
-              <Title>saved countdowns:</Title>
+        {countdowns.length ? (
+          <SavedCountdowns>
+            <Title>saved countdowns:</Title>
 
-              <>
-                {countdowns.map((countdown) => {
-                  return (
-                    <SavedCountdown
-                      key={countdown}
-                      title={countdown}
-                      countdowns={countdowns}
-                    />
-                  );
-                })}
-              </>
-            </SavedCountdowns>
-          ) : null}
-        </CountdownContainer>
-      </FullScreenHeight>
-    </>
+            <>
+              {countdowns.map((countdown) => (
+                <SavedCountdown
+                  key={countdown}
+                  title={countdown}
+                  countdowns={countdowns}
+                />
+              ))}
+            </>
+          </SavedCountdowns>
+        ) : null}
+      </CountdownContainer>
+    </FullScreenHeight>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    countdowns: state.countdowns.countdowns,
-  };
-};
+const mapStateToProps = (state) => ({
+  countdowns: state.countdowns.countdowns
+});
 
 export default connect(mapStateToProps)(Garden);

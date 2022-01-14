@@ -21,7 +21,7 @@ const FullScreenHeight = ({
   items,
   direction,
   noTopPadding,
-  addtlOffset,
+  addtlOffset
 }) => {
   // const FOOTER_HEIGHT = 50;
   const offset = addtlOffset;
@@ -31,7 +31,7 @@ const FullScreenHeight = ({
   let breakpoint;
 
   const mediaQuery = useMediaQuery({
-    query: `(min-width: ${BREAKPOINT[unsetBreakpoint]})`,
+    query: `(min-width: ${BREAKPOINT[unsetBreakpoint]})`
   });
 
   if (unsetBreakpoint !== 'none') {

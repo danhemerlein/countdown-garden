@@ -6,7 +6,7 @@ import { Toaster } from 'react-hot-toast';
 
 const now = new Date();
 
-let hours = now.getHours();
+const hours = now.getHours();
 
 const showGarden = hours < 21 && hours > 7;
 
@@ -37,8 +37,8 @@ const App = () => {
             background: '#fff',
             fontSize: '1rem',
             border: '1px solid black',
-            borderRadius: '0',
-          },
+            borderRadius: '0'
+          }
         }}
       />
     </>
